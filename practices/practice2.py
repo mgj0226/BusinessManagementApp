@@ -217,21 +217,38 @@ def advanceMain():
 #s = data from line 4
 #pN = data from lineN - 5
 def advanceMain2():
-    # map data from practice2doc.txt
     data = []
-    file = map(str.strip, open("C:\Users\user\Documents\practices\practice2.txt"))
-    for line in file:
-        data.append(int(line))
+    fname = "data.txt"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, fname)
+    # print(f"Constructed file path: {file_path}")
+
+    if not os.path.exists(file_path):
+        print(f"File not found: {file_path}")
+        return
+    try:
+        with open(file_path, "r") as file:
+            data = file.readlines()
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return
+
+    data = [line.strip() for line in data]
+    data = [(i) for i in data]
+
+    # for line in hfile:
+    #     data.append(line.strip())
+    # data = [int(i) for i in data]
 
 
-    c = data[0]
-    r = data[1]
-    N = data[2]
-    s = data[3]
+    c = int(data[0])
+    r = int(data[1])
+    N = int(data[2])
+    s = int(data[3])
     p = {}
     for i in range( N + 1 ):
         p[i] = float(data[i + 4])
-    print(c, r, N, s, p)
+    # print(c, r, N, s, p)
 
     # calculate q and profit
     max_profit = 0
