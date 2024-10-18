@@ -14,11 +14,12 @@ class Calculator(tk.Frame):
     self.textbox = tk.Text(self, height = 1, width = 20, font = font1)
     self.btnSqure = tk.Button(self, text = "square", height = 1, width = 10, font = font1, command = self.clickBtnSquare) 
     self.textbox.grid(row = 0, column = 0)
-    self.btnSqure.grid(row = 1, column = 0)
+    self.btnSqure.grid(row = 1, column = 0, sticky = tk.W)
+    self.textbox.insert("1.0", "0")
 
   def clickBtnSquare(self):
     value = self.textbox.get("1.0", tk.END) #get the value of textbox
-    square_value = str(math.pow(float(value), 2)) #calculate the square value
+    square_value = str(int(math.pow(float(value), 2))) #calculate the square value
     self.textbox.delete("1.0", tk.END) #delete the value of textbox
     self.textbox.insert("1.0", square_value) #update the value
 
